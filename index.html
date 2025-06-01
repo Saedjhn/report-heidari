@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>گزارش کار خانم حیدری</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+    h1 {
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+    select {
+      display: block;
+      margin: 0 auto 30px auto;
+      font-size: 16px;
+      padding: 8px;
+      width: 250px;
+      text-align-last: center;
+    }
+    .form-section {
+      display: none;
+      margin-top: 20px;
+    }
+    .question {
+      font-weight: bold;
+      margin-top: 25px;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+    }
+    .option input[type="text"], .option input[type="number"] {
+      margin-right: 10px;
+      width: 180px;
+      height: 28px;
+    }
+    .inline-input {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+    }
+    .inline-input label {
+      min-width: 220px;
+      font-weight: bold;
+    }
+    .inline-input input[type="text"], .inline-input input[type="number"] {
+      width: 200px;
+      height: 28px;
+      margin-right: 10px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 90px;
+      margin-top: 8px;
+    }
+    .hidden {
+      display: none;
+    }
+    .submit-button {
+      position: fixed;
+     top: 220px;
+     right: 40px;
+      transform: translateX(-50%);
+      background-color: #28a745;
+      color: white;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+#resetButton {
+  position: fixed;
+  top: 160px;
+  right: 120px;
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 999;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>گزارش کار خانم حیدری</h1>
+<button id="resetButton" type="button">پاک‌سازی فرم</button>
+
+    <select id="actionSelector">
+      <option value="">اقدام من</option>
+      <option value="sales">فروش</option>
+      <option value="customers">ارتباط با مشتریان</option>
+      <option value="projects">پروژه اجرایی</option>
+      <option value="afterSales">خدمات پس از فروش</option>
+      <option value="other">سایر امور</option>
+    </select>
+
+    <div id="sales" class="form-section">
+      <!-- فرم فروش -->
+      <div class="question">• نوع فعالیت خود را مشخص کنید:</div>
+      <div class="option"><input type="radio" name="sales-activity"> تماس ( یا پیام ) ورودی</div>
+      <div class="option"><input type="radio" name="sales-activity"> تماس ( یا پیام ) خروجی</div>
+      <div class="option">
+        <input type="radio" name="sales-activity" id="sales-other-radio"> دیگر:
+        <input type="text" id="sales-other-text" class="hidden">
+      </div>
+
+      <div class="question">• راه ارتباطی خود با مشتری را مشخص کنید:</div>
+      <div class="option"><input type="radio" name="sales-contact"> تلفن شرکت</div>
+      <div class="option"><input type="radio" name="sales-contact"> موبایل</div>
+      <div class="option"><input type="radio" name="sales-contact"> پیام رسان ها</div>
+
+      <div class="inline-input">
+        <label>نام مشتری:</label><input type="text">
+      </div>
+      <div class="inline-input">
+        <label>شماره تماس مشتری:</label><input type="text">
+      </div>
+
+      <div class="question">• اقدامات شما:</div>
+      <div class="option"><input type="checkbox" class="sales-action" value="استعلام قیمت"> استعلام قیمت</div>
+      <div class="option"><input type="checkbox" class="sales-action" value="استعلام موجودی"> استعلام موجودی</div>
+      <div class="option"><input type="checkbox"> مشاوره خرید ورق</div>
+      <div class="option"><input type="checkbox"> ثبت سفارش</div>
+      <div class="option"><input type="checkbox"> صحبت با مشتری جهت دریافت اطلاعات تکمیلی از مشتری و یا هماهنگی های ارسال بار</div>
+      <div class="option"><input type="checkbox"> اصلاح یا تکمیل فاکتور</div>
+      <div class="option"><input type="checkbox"> پیگیری ارسال بار</div>
+      <div class="option"><input type="checkbox"> پیگیری مطالبات</div>
+      <div class="option"><input type="checkbox" class="sales-pre"> پیش فروش</div>
+      <div class="option"><input type="checkbox"> ثبت فاکتور</div>
+      <div class="option"><input type="checkbox"> ثبت پیش فاکتور</div>
+      <div class="option"><input type="checkbox"> اعلام خروجی</div>
+      <div class="option">
+        <input type="checkbox" id="sales-action-other"> دیگر:
+        <input type="text" id="sales-action-other-text" class="hidden">
+      </div>
+
+      <div id="sales-estimate" class="hidden">
+        <div class="question">• درصورت استعلام ورق، کد و تعداد آن را ذکر کنید</div>
+        <div class="inline-input"><label>کد:</label><input type="text"> <label>تعداد:</label><input type="text"></div>
+      </div>
+
+      <div id="sales-preorder" class="hidden">
+        <div class="question">• درصورت پیش فروش ورق، تعداد آن را ذکر کنید</div>
+        <div class="inline-input"><label>کد:</label><input type="text"> <label>تعداد:</label><input type="text"></div>
+      </div>
+
+      <div class="inline-input">
+        <label>مدت زمان انجام این فعالیت (دقیقه):</label><input type="text">
+      </div>
+
+      <div class="question">• درصورت نیاز به توضیحات بیشتر، در کادر زیر تایپ کنید:</div>
+      <textarea></textarea>
+    </div>
+    <div id="customers" class="form-section">
+      <!-- فرم ارتباط با مشتریان -->
+      <div class="question">• نوع فعالیت خود را مشخص کنید:</div>
+      <div class="option"><input type="radio" name="cust-activity"> تماس ( یا پیام ) ورودی</div>
+      <div class="option"><input type="radio" name="cust-activity"> تماس ( یا پیام ) خروجی</div>
+      <div class="option">
+        <input type="radio" name="cust-activity" id="cust-other-radio"> دیگر:
+       <input type="text" id="cust-other-text" class="hidden">
+      </div>
+
+      <div class="question">• راه ارتباطی خود با مشتری را مشخص کنید:</div>
+      <div class="option"><input type="radio" name="cust-contact"> تلفن شرکت</div>
+      <div class="option"><input type="radio" name="cust-contact"> موبایل</div>
+      <div class="option"><input type="radio" name="cust-contact"> پیام رسان ها</div>
+
+      <div class="inline-input"><label>نام مشتری:</label><input type="text"></div>
+      <div class="inline-input"><label>شماره تماس مشتری:</label><input type="text"></div>
+
+      <div class="question">• اقدام شما در زمینه مشتریان:</div>
+      <div class="option"><input type="checkbox"> تعریف مشتری جدید</div>
+      <div class="option"><input type="checkbox"> پیگیری مشتری به صورت دوره ای(تلفنی)</div>
+      <div class="option"><input type="checkbox"> پیگیری مشتری به صورت دوره ای(پیامکی)</div>
+      <div class="option"><input type="checkbox"> پیگیری وضعیت مالی و پرداختی‌ها</div>
+      <div class="option"><input type="checkbox"> تماس با مشتریان جدید</div>
+      <div class="option"><input type="checkbox"> جستجو برای پیدا کردن سرنخ‌هایی از مشتریان احتمالی</div>
+      <div class="option">
+        <input type="checkbox" id="cust-action-other"> دیگر:
+        <input type="text" class="hidden" id="cust-action-other-text">
+      </div>
+
+      
+
+      <div class="question">• وضعیت مشتری جدید را مشخص کنید:</div>
+      <div class="option"><input type="radio" name="cust-status"> مجری</div>
+      <div class="option"><input type="radio" name="cust-status"> فروشنده</div>
+      <div class="option"><input type="radio" name="cust-status"> نمایشگاه دار - طراح</div>
+      <div class="option"><input type="radio" name="cust-status"> مصرف کننده نهایی</div>
+
+      <div class="question">• برندهای مورد استفاده:</div>
+      <div class="option"><input type="checkbox"> خارجی</div>
+      <div class="option"><input type="checkbox"> اورانوس</div>
+      <div class="option"><input type="checkbox"> دیگر برندهای ایرانی</div>
+
+      <div class="inline-input"><label>اورانوس از کدام مجموعه خریداری می‌کنند؟</label><input type="text"></div>
+      <div class="inline-input"><label>میانگین خرید ماهانه:</label><input type="text"></div>
+      <div class="inline-input"><label>تاریخ حدودی آخرین خرید:</label><input type="text"></div>
+
+      <div class="question">آدرس مشتری:</div>
+      <textarea></textarea>
+
+      <div class="question">توضیحات بیشتر در مورد مشتری یا نارضایتی‌های او:</div>
+      <textarea></textarea>
+
+      <div class="inline-input"><label>مدت زمان انجام این فعالیت (دقیقه):</label><input type="text"></div>
+    </div>
+    <div id="afterSales" class="form-section">
+      <!-- فرم خدمات پس از فروش -->
+      <div class="question">• نوع فعالیت خود را مشخص کنید:</div>
+      <div class="option"><input type="radio" name="after-activity"> تماس ( یا پیام ) ورودی</div>
+      <div class="option"><input type="radio" name="after-activity"> تماس ( یا پیام ) خروجی</div>
+      <div class="option">
+        <input type="radio" name="after-activity" id="after-other-radio"> دیگر:
+<input type="text" id="after-other-text" class="hidden">
+      </div>
+
+      <div class="question">• راه ارتباطی خود با مشتری را مشخص کنید:</div>
+      <div class="option"><input type="radio" name="after-contact"> تلفن شرکت</div>
+      <div class="option"><input type="radio" name="after-contact"> موبایل</div>
+      <div class="option"><input type="radio" name="after-contact"> پیام رسان ها</div>
+
+      <div class="inline-input"><label>نام مشتری:</label><input type="text"></div>
+      <div class="inline-input"><label>شماره تماس مشتری:</label><input type="text"></div>
+
+      <div class="question">• اقدام شما در زمینه نارضایتی مشتری:</div>
+      <div class="option"><input type="checkbox"> دریافت نارضایتی و مشکلات فنی چسب و ورق</div>
+      <div class="option"><input type="checkbox"> ارائه گزارش به واحد مربوطه</div>
+      <div class="option"><input type="checkbox"> پیگیری و انجام هماهنگی‌های لازم</div>
+      <div class="option">
+        <input type="checkbox" id="after-action-other"> دیگر:
+        <input type="text" class="hidden" id="after-action-other-text">
+      </div>
+
+      <div class="question">• درصورت نیاز به توضیحات بیشتر:</div>
+      <textarea></textarea>
+<div class="inline-input"><label>مدت زمان انجام این فعالیت (دقیقه):</label><input type="text"></div>
+    </div>
+
+    <div id="projects" class="form-section">
+      <!-- فرم پروژه اجرایی -->
+      <div class="question">• نوع فعالیت خود را مشخص کنید:</div>
+      <div class="option"><input type="radio" name="proj-activity"> تماس ( یا پیام ) ورودی</div>
+      <div class="option"><input type="radio" name="proj-activity"> تماس ( یا پیام ) خروجی</div>
+      <div class="option"><input type="radio" name="proj-activity"> پیگیری</div>
+      <div class="option">
+        <input type="radio" name="proj-activity" id="proj-activity-other-radio"> دیگر:
+        <input type="text" id="proj-activity-other-text" class="hidden">
+      </div>
+
+      <div class="question">• راه ارتباطی:</div>
+      <div class="option"><input type="radio" name="proj-contact"> تلفن شرکت</div>
+      <div class="option"><input type="radio" name="proj-contact"> موبایل</div>
+      <div class="option"><input type="radio" name="proj-contact"> پیام رسان ها</div>
+
+      <div class="inline-input"><label>نام مشتری:</label><input type="text"></div>
+      <div class="inline-input"><label>شماره تماس مشتری:</label><input type="text"></div>
+
+      <div class="question">• اقدامات شما:</div>
+      <div class="option"><input type="checkbox"> مشاوره</div>
+      <div class="option"><input type="checkbox"> ثبت پیش فاکتور</div>
+      <div class="option"><input type="checkbox"> پیگیری‌های داخلی جهت انجام پروژه</div>
+      <div class="option"><input type="checkbox"> پیگیری مشتری (هماهنگی واریزی، نصب...)</div>
+      <div class="option">
+        <input type="checkbox" id="proj-action-other"> دیگر:
+        <input type="text" class="hidden" id="proj-action-other-text">
+      </div>
+
+      <div class="question">• توضیحات بیشتر:</div>
+      <textarea></textarea>
+
+      <div class="inline-input"><label>مدت زمان انجام فعالیت (دقیقه):</label><input type="text"></div>
+    </div>
+    <div id="other" class="form-section">
+      <!-- فرم سایر امور -->
+      <div class="question">• نوع فعالیت خود را مشخص کنید:</div>
+      <div class="option"><input type="checkbox"> انجام امور اداری و داخلی</div>
+      <div class="option"><input type="checkbox"> انجام کار تبلیغاتی</div>
+      <div class="option">
+        <input type="checkbox" id="other-activity-other"> دیگر:
+        <input type="text" class="hidden" id="other-activity-other-text">
+      </div>
+
+      <div class="inline-input"><label>مدت زمان انجام فعالیت (دقیقه):</label><input type="text"></div>
+
+      <div class="question">• توضیحات بیشتر:</div>
+      <textarea></textarea>
+    </div>
+
+    <button class="submit-button">ثبت گزارش کار</button>
+  </div>
+
+  <script>
+    document.getElementById("actionSelector").addEventListener("change", function () {
+      const sections = document.querySelectorAll(".form-section");
+      sections.forEach(sec => sec.style.display = "none");
+      const selected = this.value;
+      if (selected) document.getElementById(selected).style.display = "block";
+    });
+
+    // Toggle ظاهر فیلدهای "دیگر"
+    const toggleOther = (triggerId, inputId) => {
+      const trigger = document.getElementById(triggerId);
+      const input = document.getElementById(inputId);
+      if (trigger && input) {
+        trigger.addEventListener("change", () => {
+          input.classList.toggle("hidden", !trigger.checked && !trigger.checked);
+        });
+      }
+    };
+
+    toggleOther("sales-other-radio", "sales-other-text");
+    toggleOther("sales-action-other", "sales-action-other-text");
+    toggleOther("cust-action-other", "cust-action-other-text");
+    toggleOther("after-action-other", "after-action-other-text");
+    toggleOther("proj-action-other", "proj-action-other-text");
+    toggleOther("proj-activity-other", "proj-activity-other");
+    toggleOther("other-activity-other", "other-activity-other-text");
+    toggleOther("after-other-radio", "after-other-text");
+    toggleOther("proj-activity-other-radio", "proj-activity-other-text");
+    toggleOther("cust-other-radio", "cust-other-text");
+ // نمایش فرم بر اساس گزینه انتخاب‌شده
+  document.getElementById("actionSelector").addEventListener("change", function () {
+    const sections = document.querySelectorAll(".form-section");
+    sections.forEach(sec => sec.style.display = "none");
+    const selected = this.value;
+    if (selected) {
+      const form = document.getElementById(selected);
+      if (form) form.style.display = "block";
+    }
+  });
+
+  // دکمه ثبت گزارش کار و ارسال به Google Sheets
+  document.querySelector(".submit-button").addEventListener("click", function () {
+    const selected = document.getElementById("actionSelector").value;
+    if (!selected) {
+      alert("لطفاً یک فعالیت را انتخاب کنید.");
+      return;
+    }
+
+    const section = document.getElementById(selected);
+    if (!section) return;
+
+    const formData = {
+      type: selected,
+      subtype: section.querySelector('input[name$="-activity"]:checked')?.nextSibling?.textContent.trim() || "",
+      channel: section.querySelector('input[name$="-contact"]:checked')?.nextSibling?.textContent.trim() || "",
+      name: section.querySelector('input[placeholder*="نام"]')?.value || "",
+      phone: section.querySelector('input[placeholder*="شماره"]')?.value || "",
+      actions: [...section.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.parentElement.textContent.trim()).join(", "),
+      customerStatus: section.querySelector('input[name$="-status"]:checked')?.nextSibling?.textContent.trim() || "",
+      brands: [...section.querySelectorAll('input[type="checkbox"]')].filter(cb => cb.parentElement.textContent.includes("برند")).filter(cb => cb.checked).map(cb => cb.parentElement.textContent.trim()).join(", "),
+      duration: section.querySelector('input[type="text"]:last-of-type')?.value || "",
+      note: section.querySelector('textarea')?.value || ""
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbzZdLlvp7htGM-pEiYPP6VWgdamxIWLYYGenl3g0yN0y6d1TeONkEELlvQyeZl_strUMg/exec", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+   .then(res => res.text())
+.then(msg => {
+  console.log("Server response:", msg); // ← این خط خیلی مهمه
+  if (msg.includes("OK")) {
+    alert(" گزارش با موفقیت ثبت شد!");
+  } else {
+    alert(" خطا در ثبت: " + msg);
+  }
+})
+    .catch(err => {
+      alert(" ارسال اطلاعات با خطا مواجه شد");
+      console.error(err);
+    });
+  });
+
+  // دکمه پاک‌سازی فرم
+  document.getElementById("resetButton").addEventListener("click", function () {
+    document.querySelectorAll("input, textarea").forEach(el => {
+      if (el.type === "radio" || el.type === "checkbox") {
+        el.checked = false;
+      } else {
+        el.value = "";
+      }
+    });
+    document.querySelectorAll(".form-section").forEach(fs => fs.style.display = "none");
+    document.getElementById("actionSelector").value = "";
+  });
+    // شرط نمایش استعلام و پیش‌فروش
+    document.querySelectorAll(".sales-action").forEach(cb => {
+      cb.addEventListener("change", () => {
+        const show = [...document.querySelectorAll(".sales-action")].some(i => i.checked && i.value.includes("استعلام"));
+        document.getElementById("sales-estimate").style.display = show ? "block" : "none";
+      });
+    });
+
+    document.querySelectorAll(".sales-pre").forEach(cb => {
+      cb.addEventListener("change", () => {
+        const show = [...document.querySelectorAll(".sales-pre")].some(i => i.checked);
+        document.getElementById("sales-preorder").style.display = show ? "block" : "none";
+      });
+    });
+  document.getElementById("resetButton").addEventListener("click", function () {
+  // پاک کردن تمام input ها و textarea ها
+  document.querySelectorAll("input, textarea").forEach(el => {
+    if (el.type === "radio" || el.type === "checkbox") {
+      el.checked = false;
+    } else {
+      el.value = "";
+    }
+  });
+
+  // بستن همه فرم‌ها
+  document.querySelectorAll(".form-section").forEach(fs => fs.style.display = "none");
+
+  // ریست منوی انتخاب فعالیت
+
+});
+
+</script>
+</body>
+</html>
